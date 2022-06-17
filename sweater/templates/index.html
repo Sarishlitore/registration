@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block userlogin %}
+    <form>
+        <button class="btn btn-outline-primary me-2" formaction="/login">Войти</button>
+        <button class="btn btn-primary" formaction="/registration">Регистрация</button>
+    </form>
+{% endblock %}

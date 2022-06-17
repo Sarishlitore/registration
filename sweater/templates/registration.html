@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block userlogin %}
+    <form>
+        <button class="btn btn-outline-primary me-2" formaction="/login">Войти</button>
+    </form>
+{% endblock %}
+
+{% block body %}
+    <form method="post" class="container">
+        {{ form.hidden_tag() }}
+        {% for field in form if field.name not in ['csrf_token', 'submit'] %}
+            <p>{{ field.label() }}
+            {% if field.errors %}
+                {{ field() }}
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% else %}
+                {{ field() }}
+            {% endif %}
+        {% endfor %}
+        <p>{{ form.submit() }}
+    </form>
+{% endblock %}

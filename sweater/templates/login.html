@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Войти
+{% endblock %}
+
+{% block userlogin %}
+    <form>
+        <button class="btn btn-primary" formaction="/registration">Регистрация</button>
+    </form>
+{% endblock %}
+
+{% block body %}
+    <form method="post" class="container">
+        {{ form.hidden_tag() }}
+        {% for field in form if field.name not in ['csrf_token', 'remember', 'submit'] %}
+            <p>{{ field.label() }}
+            {% if field.errors %}
+                {{ field() }}
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% else %}
+                {{ field() }}
+            {% endif %}
+        {% endfor %}
+        <p>{{ form.remember.label() }} {{ form.remember() }}
+        <p>{{ form.submit() }}
+    </form>
+{% endblock %}
